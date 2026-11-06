@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="Cachorro olhando para baixo">
+  <title>Cachorro olhando para baixo</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f6faff"/>
+      <stop offset="1" stop-color="#dceeff"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" fill="url(#bg)"/>
+  <circle cx="334" cy="52" r="108" fill="#ffffff" opacity=".38"/>
+  <circle cx="50" cy="268" r="132" fill="#bfdbfe" opacity=".32"/>
+  <circle cx="76" cy="66" r="5" fill="#93c5fd" opacity=".5"/>
+  <circle cx="96" cy="50" r="3" fill="#93c5fd" opacity=".4"/>
+    <style>
+      .b, .a { fill: none; stroke-width: 13; stroke-linecap: round; stroke-linejoin: round; }
+      .b { stroke: #1d4ed8; }
+      .a { stroke: #8ab7ff; }
+      .h { fill: #1d4ed8; }
+      .m { fill: none; stroke: #60a5fa; stroke-width: 4; stroke-linecap: round; stroke-dasharray: 2 10; }
+    </style>
+  <rect x="72" y="248" width="256" height="12" rx="6" fill="#bfdbfe" opacity=".9"/><ellipse cx="200" cy="266" rx="130" ry="10" fill="#1d4ed8" opacity=".06"/>
+  <g>
+    <path class="b" d="M215 118 L266 160"/>
+      <path class="b" d="M266 160 L291 202 L311 244"/>
+      <path class="a" d="M262 162 L282 205 L300 244"/>
+      <path class="b" d="M215 118 L176 185 L136 245"/>
+      <path class="a" d="M218 120 L190 196 L162 248"/>
+      <path class="b" d="M266 160 L292 197"/>
+      <circle class="h" cx="300" cy="206" r="14"/>
+      <path class="m" d="M238 142 C248 156 256 172 260 188"/>
+  </g>
+</svg>

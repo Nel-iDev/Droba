@@ -1,0 +1,77 @@
+{
+  "id": "./",
+  "name": "Bend — Alongamentos e Flexibilidade",
+  "short_name": "Bend",
+  "description": "Rotinas guiadas de alongamento com cronômetro, metas diárias e acompanhamento de progresso. Funciona offline.",
+  "lang": "pt-BR",
+  "dir": "ltr",
+  "start_url": "./?source=pwa",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "portrait",
+  "background_color": "#f4f7fc",
+  "theme_color": "#2563eb",
+  "categories": ["health", "fitness", "lifestyle"],
+  "icons": [
+    {
+      "src": "./icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Corpo Inteiro",
+      "short_name": "Corpo Inteiro",
+      "description": "Alongue da cabeça aos pés",
+      "url": "./?routine=corpo-inteiro",
+      "icons": [
+        {
+          "src": "./icons/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Preparação para o Sono",
+      "short_name": "Sono",
+      "description": "Desacelere e durma melhor",
+      "url": "./?routine=preparacao-sono",
+      "icons": [
+        {
+          "src": "./icons/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "Alívio de Lombar",
+      "short_name": "Lombar",
+      "description": "Menos tensão, mais mobilidade",
+      "url": "./?routine=alivio-lombar",
+      "icons": [
+        {
+          "src": "./icons/icon-192.png",
+          "sizes": "192x192",
+          "type": "image/png"
+        }
+      ]
+    }
+  ]
+}

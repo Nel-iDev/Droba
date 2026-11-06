@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="Torção sentada">
+  <title>Torção sentada</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f6faff"/>
+      <stop offset="1" stop-color="#dceeff"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" fill="url(#bg)"/>
+  <circle cx="334" cy="52" r="108" fill="#ffffff" opacity=".38"/>
+  <circle cx="50" cy="268" r="132" fill="#bfdbfe" opacity=".32"/>
+  <circle cx="76" cy="66" r="5" fill="#93c5fd" opacity=".5"/>
+  <circle cx="96" cy="50" r="3" fill="#93c5fd" opacity=".4"/>
+    <style>
+      .b, .a { fill: none; stroke-width: 13; stroke-linecap: round; stroke-linejoin: round; }
+      .b { stroke: #1d4ed8; }
+      .a { stroke: #8ab7ff; }
+      .h { fill: #1d4ed8; }
+      .m { fill: none; stroke: #60a5fa; stroke-width: 4; stroke-linecap: round; stroke-dasharray: 2 10; }
+    </style>
+  <rect x="72" y="248" width="256" height="12" rx="6" fill="#bfdbfe" opacity=".9"/><ellipse cx="200" cy="266" rx="130" ry="10" fill="#1d4ed8" opacity=".06"/>
+  <g>
+    <path class="b" d="M200 128 L200 192"/>
+      <path class="b" d="M200 192 L154 216 L205 238"/>
+      <path class="b" d="M200 192 L246 216 L195 238"/>
+      <path class="b" d="M200 148 C230 166 254 194 272 228"/>
+      <path class="a" d="M200 150 C182 170 197 192 234 207"/>
+      <circle class="h" cx="200" cy="111" r="16"/>
+      <path class="m" d="M247 132 C268 151 270 174 255 191"/>
+  </g>
+</svg>

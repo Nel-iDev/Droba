@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="Agachamento profundo">
+  <title>Agachamento profundo</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f6faff"/>
+      <stop offset="1" stop-color="#dceeff"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="300" fill="url(#bg)"/>
+  <circle cx="334" cy="52" r="108" fill="#ffffff" opacity=".38"/>
+  <circle cx="50" cy="268" r="132" fill="#bfdbfe" opacity=".32"/>
+  <circle cx="76" cy="66" r="5" fill="#93c5fd" opacity=".5"/>
+  <circle cx="96" cy="50" r="3" fill="#93c5fd" opacity=".4"/>
+    <style>
+      .b, .a { fill: none; stroke-width: 13; stroke-linecap: round; stroke-linejoin: round; }
+      .b { stroke: #1d4ed8; }
+      .a { stroke: #8ab7ff; }
+      .h { fill: #1d4ed8; }
+      .m { fill: none; stroke: #60a5fa; stroke-width: 4; stroke-linecap: round; stroke-dasharray: 2 10; }
+    </style>
+  <path d="M40 252h320" stroke="#c7dbf7" stroke-width="2" stroke-linecap="round"/><ellipse cx="200" cy="258" rx="100" ry="10" fill="#1d4ed8" opacity=".07"/>
+  <g>
+    <path class="b" d="M200 120 L195 176"/>
+      <path class="b" d="M195 176 L146 202 L150 250"/>
+      <path class="a" d="M195 176 L246 202 L242 250"/>
+      <path class="b" d="M200 137 L166 156 L146 186"/>
+      <path class="a" d="M200 137 L234 156 L254 186"/>
+      <circle class="h" cx="200" cy="102" r="16"/>
+      <path class="m" d="M218 196 C228 204 234 214 238 226"/>
+  </g>
+</svg>

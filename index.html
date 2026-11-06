@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#2563eb">
+  <meta name="description" content="Bend é um guia de alongamentos com rotinas guiadas, cronômetro, metas e acompanhamento de progresso. Funciona offline.">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Bend">
+  <meta name="format-detection" content="telephone=no">
+  <title>Bend — Alongamentos e Flexibilidade</title>
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" href="./icons/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <svg class="svg-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <symbol id="i-stretch" viewBox="0 0 24 24">
+      <circle cx="12" cy="4.5" r="2.2"/>
+      <path d="M12 7.5v6"/>
+      <path d="m12 9.5 4.5-3"/>
+      <path d="m12 9.5-4.5-3"/>
+      <path d="m12 13.5-4 7"/>
+      <path d="m12 13.5 4 7"/>
+    </symbol>
+    <symbol id="i-home" viewBox="0 0 24 24">
+      <path d="m3 9.5 9-7 9 7V20a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/>
+      <path d="M9 22v-8h6v8"/>
+    </symbol>
+    <symbol id="i-layers" viewBox="0 0 24 24">
+      <path d="m12.8 2.2-9 4a1.8 1.8 0 0 0 0 3.3l9 4a1.8 1.8 0 0 0 1.6 0l9-4a1.8 1.8 0 0 0 0-3.3l-9-4a1.8 1.8 0 0 0-1.6 0Z"/>
+      <path d="m22 12.5-9.2 4.1a1.8 1.8 0 0 1-1.6 0L2 12.5"/>
+      <path d="m22 17.2-9.2 4.1a1.8 1.8 0 0 1-1.6 0L2 17.2"/>
+    </symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24">
+      <path d="M3 3v18h18"/>
+      <path d="M7 16v-3"/>
+      <path d="M12 16V8"/>
+      <path d="M17 16v-6"/>
+    </symbol>
+    <symbol id="i-play" viewBox="0 0 24 24">
+      <path d="M8 5.2v13.6L19 12Z" fill="currentColor" stroke="none"/>
+    </symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24">
+      <rect x="7" y="5" width="3.6" height="14" rx="1.4" fill="currentColor" stroke="none"/>
+      <rect x="13.4" y="5" width="3.6" height="14" rx="1.4" fill="currentColor" stroke="none"/>
+    </symbol>
+    <symbol id="i-back" viewBox="0 0 24 24">
+      <path d="m9 14-5-5 5-5"/>
+      <path d="M4 9h9a7 7 0 1 1 0 14h-1"/>
+    </symbol>
+    <symbol id="i-forward" viewBox="0 0 24 24">
+      <path d="m15 14 5-5-5-5"/>
+      <path d="M20 9h-9a7 7 0 1 0 0 14h1"/>
+    </symbol>
+    <symbol id="i-x" viewBox="0 0 24 24">
+      <path d="M18 6 6 18"/>
+      <path d="m6 6 12 12"/>
+    </symbol>
+    <symbol id="i-chevron-right" viewBox="0 0 24 24">
+      <path d="m9 18 6-6-6-6"/>
+    </symbol>
+    <symbol id="i-arrow-left" viewBox="0 0 24 24">
+      <path d="m12 19-7-7 7-7"/>
+      <path d="M19 12H5"/>
+    </symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9"/>
+      <path d="M12 7v5l3 2"/>
+    </symbol>
+    <symbol id="i-flame" viewBox="0 0 24 24">
+      <path d="M12 2.8c1.2 4.2 5.2 5.8 5.2 10.4a5.2 5.2 0 1 1-10.4 0c0-2.2 1.1-4 2.7-5.4.2 1.9 1 2.9 2.4 3.4-.6-3.1.3-6.1.1-8.4Z"/>
+    </symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24">
+      <rect x="3" y="5" width="18" height="16" rx="3"/>
+      <path d="M8 3v4M16 3v4M3 10h18"/>
+    </symbol>
+    <symbol id="i-target" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9"/>
+      <circle cx="12" cy="12" r="5"/>
+      <circle cx="12" cy="12" r="1"/>
+    </symbol>
+    <symbol id="i-check" viewBox="0 0 24 24">
+      <path d="m4 12 5 5L20 6"/>
+    </symbol>
+    <symbol id="i-volume" viewBox="0 0 24 24">
+      <path d="M11 5 6 9H3v6h3l5 4Z"/>
+      <path d="M15.5 8.5a5 5 0 0 1 0 7"/>
+      <path d="M18.5 5.5a9 9 0 0 1 0 13"/>
+    </symbol>
+    <symbol id="i-volume-off" viewBox="0 0 24 24">
+      <path d="M11 5 6 9H3v6h3l5 4Z"/>
+      <path d="m16 9 5 6"/>
+      <path d="m21 9-5 6"/>
+    </symbol>
+    <symbol id="i-sunrise" viewBox="0 0 24 24">
+      <path d="M12 2v4M4.9 7.9 3.5 6.5M19.1 7.9l1.4-1.4M2 18h20"/>
+      <path d="M5 18a7 7 0 0 1 14 0"/>
+      <path d="M12 12V8"/>
+    </symbol>
+    <symbol id="i-droplet" viewBox="0 0 24 24">
+      <path d="M12 2.7c3.5 4.2 6 7.1 6 10.3a6 6 0 0 1-12 0c0-3.2 2.5-6.1 6-10.3Z"/>
+    </symbol>
+    <symbol id="i-activity" viewBox="0 0 24 24">
+      <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+    </symbol>
+    <symbol id="i-heart" viewBox="0 0 24 24">
+      <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 0 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8Z"/>
+    </symbol>
+    <symbol id="i-leaf" viewBox="0 0 24 24">
+      <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 19 2c1 2 2 4.2 2 8a7 7 0 0 1-7 7Z"/>
+      <path d="M2 21c0-3 1.9-5.4 5-6"/>
+    </symbol>
+    <symbol id="i-moon" viewBox="0 0 24 24">
+      <path d="M21 12.8A8.5 8.5 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/>
+    </symbol>
+    <symbol id="i-sparkles" viewBox="0 0 24 24">
+      <path d="m11 3 1.7 5.3L18 10l-5.3 1.7L11 17l-1.7-5.3L4 10l5.3-1.7Z"/>
+      <path d="m19 14 .8 2.2L22 17l-2.2.8L19 20l-.8-2.2L16 17l2.2-.8Z"/>
+    </symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24">
+      <path d="M13 2 4 14h7l-1 8 9-12h-7Z"/>
+    </symbol>
+    <symbol id="i-trophy" viewBox="0 0 24 24">
+      <path d="M8 21h8M12 17v4"/>
+      <path d="M7 4h10v4a5 5 0 0 1-10 0Z"/>
+      <path d="M7 6H4v2a3 3 0 0 0 3 3M17 6h3v2a3 3 0 0 1-3 3"/>
+    </symbol>
+    <symbol id="i-medal" viewBox="0 0 24 24">
+      <circle cx="12" cy="15" r="5"/>
+      <path d="M8 2h8l-2.3 8h-3.4Z"/>
+      <path d="m12 13 .7 1.5 1.6.2-1.2 1.1.3 1.6-1.4-.8-1.4.8.3-1.6-1.2-1.1 1.6-.2Z"/>
+    </symbol>
+    <symbol id="i-crown" viewBox="0 0 24 24">
+      <path d="m3 6 4.5 4L12 4l4.5 6L21 6l-1.6 12H4.6Z"/>
+      <path d="M4.6 18h14.8"/>
+    </symbol>
+    <symbol id="i-star" viewBox="0 0 24 24">
+      <path d="m12 3 2.7 5.5 6.1.9-4.4 4.3 1 6-5.4-2.9-5.4 2.9 1-6-4.4-4.3 6.1-.9Z"/>
+    </symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24">
+      <rect x="4" y="10" width="16" height="11" rx="3"/>
+      <path d="M8 10V7a4 4 0 0 1 8 0v3"/>
+    </symbol>
+    <symbol id="i-info" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="9"/>
+      <path d="M12 11v5M12 8h.01"/>
+    </symbol>
+    <symbol id="i-download" viewBox="0 0 24 24">
+      <path d="M12 3v12"/>
+      <path d="m7 10 5 5 5-5"/>
+      <path d="M5 21h14"/>
+    </symbol>
+    <symbol id="i-trash" viewBox="0 0 24 24">
+      <path d="M4 7h16M10 11v6M14 11v6"/>
+      <path d="m6 7 1 13h10l1-13"/>
+      <path d="M9 7V4h6v3"/>
+    </symbol>
+    <symbol id="i-wifi-off" viewBox="0 0 24 24">
+      <path d="m2 2 20 20"/>
+      <path d="M8.5 8.5a10 10 0 0 1 11 2.5"/>
+      <path d="M5 12.5a15 15 0 0 1 3-2"/>
+      <path d="M8.5 16a5 5 0 0 1 7 0"/>
+      <path d="M12 20h.01"/>
+    </symbol>
+    <symbol id="i-smartphone" viewBox="0 0 24 24">
+      <rect x="7" y="2" width="10" height="20" rx="2.5"/>
+      <path d="M11 18h2"/>
+    </symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24">
+      <path d="M20 5v5h-5"/>
+      <path d="M20 10a8 8 0 1 0-2.3 6.7"/>
+    </symbol>
+    <symbol id="i-user" viewBox="0 0 24 24">
+      <circle cx="12" cy="8" r="4"/>
+      <path d="M4 21a8 8 0 0 1 16 0"/>
+    </symbol>
+  </svg>
+
+  <div id="app" v-cloak>
+    <transition name="screen" mode="out-in">
+      <section v-if="view === 'home'" key="home" class="screen home-screen">
+        <header class="home-header">
+          <div class="brand">
+            <span class="brand-mark"><app-icon name="stretch" :size="25"></app-icon></span>
+            <div class="brand-text">
+              <span class="brand-name">bend</span>
+              <span class="brand-sub">{{ todayLabel }}</span>
+            </div>
+          </div>
+          <button class="avatar-button" type="button" aria-label="Abrir perfil e progresso" @click="go('profile')">
+            <app-icon name="user" :size="20"></app-icon>
+            <span class="avatar-button__dot"></span>
+          </button>
+        </header>
+
+        <main class="home-content">
+          <div class="home-intro">
+            <p class="eyebrow">{{ greeting }},</p>
+            <h1>Como está seu corpo <span>hoje?</span></h1>
+            <p class="home-intro__sub">Alguns minutos de alongamento podem mudar a forma como você se sente pelo resto do dia.</p>
+          </div>
+
+          <section class="hero-card" aria-labelledby="recommended-title">
+            <span class="hero-card__orb hero-card__orb--one"></span>
+            <span class="hero-card__orb hero-card__orb--two"></span>
+            <div class="hero-card__top">
+              <span class="hero-pill">
+                <app-icon name="sparkles" :size="14"></app-icon>
+                Para agora
+              </span>
+              <span class="hero-streak">
+                <app-icon name="flame" :size="15"></app-icon>
+                {{ streak }} {{ streak === 1 ? 'dia' : 'dias' }}
+              </span>
+            </div>
+            <div class="hero-card__body">
+              <div>
+                <h2 id="recommended-title">{{ recommended.title }}</h2>
+                <p>{{ recommended.tagline }}</p>
+              </div>
+              <div class="hero-ring" :style="{ '--goal-progress': dailyGoalPct }">
+                <span>{{ Math.min(todayMinutes, dailyGoal) }}/{{ dailyGoal }}</span>
+                <small>min</small>
+              </div>
+            </div>
+            <div class="hero-card__meta">
+              <span><app-icon name="clock" :size="15"></app-icon>{{ routineMinutes(recommended) }} min</span>
+              <span><app-icon name="layers" :size="15"></app-icon>{{ recommended.exerciseIds.length }} poses</span>
+              <span><app-icon name="target" :size="15"></app-icon>{{ recommended.level }}</span>
+            </div>
+            <button class="btn btn-white hero-button" type="button" @click="openRoutine(recommended)">
+              <app-icon name="play" :size="17"></app-icon>
+              Começar agora
+            </button>
+          </section>
+
+          <div class="quick-stats">
+            <article class="mini-stat">
+              <span class="mini-stat__icon mini-stat__icon--flame">
+                <app-icon name="flame" :size="20"></app-icon>
+              </span>
+              <div>
+                <strong>{{ streak }}</strong>
+                <span>dias seguidos</span>
+              </div>
+            </article>
+            <article class="mini-stat">
+              <span class="mini-stat__icon mini-stat__icon--clock">
+                <app-icon name="clock" :size="20"></app-icon>
+              </span>
+              <div>
+                <strong>{{ todayMinutes }}</strong>
+                <span>minutos hoje</span>
+              </div>
+            </article>
+            <article class="mini-stat">
+              <span class="mini-stat__icon mini-stat__icon--level" :style="{ color: level.color }">
+                <app-icon :name="level.icon" :size="20"></app-icon>
+              </span>
+              <div>
+                <strong class="mini-stat__text">{{ level.name }}</strong>
+                <span>seu nível</span>
+              </div>
+            </article>
+          </div>
+
+          <section class="goal-card" aria-label="Meta diária">
+            <div class="goal-card__top">
+              <div>
+                <p class="eyebrow">Meta de hoje</p>
+                <h3>{{ todayMinutes >= dailyGoal ? 'Meta concluída' : 'Faltam ' + (dailyGoal - todayMinutes) + ' min' }}</h3>
+              </div>
+              <span class="goal-card__count">
+                <app-icon v-if="todayMinutes >= dailyGoal" name="check" :size="15"></app-icon>
+                {{ Math.min(todayMinutes, dailyGoal) }}/{{ dailyGoal }} min
+              </span>
+            </div>
+            <div class="progress-track">
+              <span :style="{ width: dailyGoalPct + '%' }"></span>
+            </div>
+          </section>
+
+          <section class="home-section">
+            <div class="section-head">
+              <div>
+                <p class="eyebrow">Encontre o seu momento</p>
+                <h2>Escolha seu alongamento</h2>
+              </div>
+              <button class="text-button" type="button" @click="go('routines')">Ver todas</button>
+            </div>
+            <div class="moment-grid">
+              <button
+                v-for="routine in routines"
+                :key="routine.id"
+                class="moment-card"
+                type="button"
+                :style="{ '--accent': routine.accent, '--soft': routine.soft }"
+                @click="openRoutine(routine)"
+              >
+                <span class="moment-card__icon">
+                  <app-icon :name="routine.icon" :size="23"></app-icon>
+                </span>
+                <span class="moment-card__title">{{ routine.title }}</span>
+                <span class="moment-card__meta">{{ routineMinutes(routine) }} min · {{ routine.exerciseIds.length }} poses</span>
+                <span class="moment-card__chevron">
+                  <app-icon name="chevron-right" :size="16"></app-icon>
+                </span>
+              </button>
+            </div>
+          </section>
+
+          <section class="tip-card">
+            <span class="tip-card__icon"><app-icon name="sparkles" :size="20"></app-icon></span>
+            <div>
+              <p class="eyebrow">Dica do dia</p>
+              <p>{{ dailyTip }}</p>
+            </div>
+          </section>
+
+          <button v-if="canInstall" class="install-banner" type="button" @click="installApp">
+            <span class="install-banner__icon"><app-icon name="download" :size="21"></app-icon></span>
+            <span class="install-banner__text">
+              <strong>Instale o Bend</strong>
+              <small>Acesse suas rotinas mesmo sem internet</small>
+            </span>
+            <app-icon name="chevron-right" :size="18"></app-icon>
+          </button>
+        </main>
+      </section>
+
+      <section v-else-if="view === 'routines'" key="routines" class="screen routines-screen">
+        <header class="page-header">
+          <div>
+            <p class="eyebrow">Sua biblioteca</p>
+            <h1>Rotinas</h1>
+          </div>
+          <button class="icon-button" type="button" aria-label="Voltar para o início" @click="go('home')">
+            <app-icon name="home" :size="21"></app-icon>
+          </button>
+        </header>
+        <p class="page-sub">Alongue de acordo com o seu momento. Escolha uma rotina e siga o guia no seu ritmo.</p>
+
+        <div class="filter-row" role="group" aria-label="Filtrar rotinas">
+          <button
+            v-for="filter in filters"
+            :key="filter.value"
+            class="filter-chip"
+            :class="{ 'filter-chip--active': activeFilter === filter.value }"
+            type="button"
+            @click="activeFilter = filter.value"
+          >
+            {{ filter.label }}
+          </button>
+        </div>
+
+        <div class="routine-list">
+          <button
+            v-for="routine in filteredRoutines"
+            :key="routine.id"
+            class="routine-card"
+            type="button"
+            @click="openRoutine(routine)"
+          >
+            <span class="routine-card__thumb" :style="{ background: routine.soft, color: routine.accent }">
+              <img :src="coverImage(routine)" alt="" loading="lazy">
+            </span>
+            <span class="routine-card__content">
+              <span class="routine-card__top">
+                <strong>{{ routine.title }}</strong>
+                <span class="chip">{{ routine.category }}</span>
+              </span>
+              <span class="routine-card__tagline">{{ routine.tagline }}</span>
+              <span class="routine-card__meta">
+                <app-icon name="clock" :size="14"></app-icon>
+                {{ routineMinutes(routine) }} min
+                <span class="meta-dot"></span>
+                {{ routine.exerciseIds.length }} alongamentos
+              </span>
+            </span>
+            <span class="routine-card__chevron">
+              <app-icon name="chevron-right" :size="18"></app-icon>
+            </span>
+          </button>
+        </div>
+
+        <div v-if="filteredRoutines.length === 0" class="empty-state">
+          <app-icon name="leaf" :size="30"></app-icon>
+          <p>Nenhuma rotina encontrada para este filtro.</p>
+        </div>
+      </section>
+
+      <section v-else-if="view === 'profile'" key="profile" class="screen profile-screen">
+        <header class="page-header">
+          <div>
+            <p class="eyebrow">Seu espaço</p>
+            <h1>Progresso</h1>
+          </div>
+          <button class="icon-button" type="button" aria-label="Voltar para o início" @click="go('home')">
+            <app-icon name="home" :size="21"></app-icon>
+          </button>
+        </header>
+
+        <main class="profile-content">
+          <section class="level-card" :style="{ '--level-color': level.color }">
+            <div class="level-card__top">
+              <span class="level-orb">
+                <app-icon :name="level.icon" :size="27"></app-icon>
+              </span>
+              <div class="level-card__title">
+                <span>Nível {{ levelIndex + 1 }}</span>
+                <h2>{{ level.name }}</h2>
+              </div>
+              <span class="level-xp">{{ xp }} XP</span>
+            </div>
+            <p class="level-blurb">{{ level.blurb }}</p>
+            <div class="level-progress">
+              <span :style="{ width: levelProgress + '%' }"></span>
+            </div>
+            <div class="level-progress__labels">
+              <span v-if="nextLevel">{{ nextLevel.min - xp }} XP para {{ nextLevel.name }}</span>
+              <span v-else>Nível máximo alcançado</span>
+              <span>{{ xp }} / {{ nextLevel ? nextLevel.min : xp }} XP</span>
+            </div>
+          </section>
+
+          <div class="stats-grid">
+            <article class="stat-card">
+              <span class="stat-card__icon stat-card__icon--flame">
+                <app-icon name="flame" :size="20"></app-icon>
+              </span>
+              <strong>{{ streak }}</strong>
+              <span class="stat-card__label">dias de ofensiva</span>
+              <small>Recorde: {{ bestStreak }}</small>
+            </article>
+            <article class="stat-card">
+              <span class="stat-card__icon stat-card__icon--blue">
+                <app-icon name="clock" :size="20"></app-icon>
+              </span>
+              <strong>{{ totalMinutes }}</strong>
+              <span class="stat-card__label">minutos alongados</span>
+              <small>{{ totalTimeLabel }}</small>
+            </article>
+            <article class="stat-card">
+              <span class="stat-card__icon stat-card__icon--green">
+                <app-icon name="check" :size="20"></app-icon>
+              </span>
+              <strong>{{ totalSessions }}</strong>
+              <span class="stat-card__label">treinos concluídos</span>
+              <small>{{ totalSessions === 1 ? 'Primeiro passo dado' : 'Continue no ritmo' }}</small>
+            </article>
+            <article class="stat-card">
+              <span class="stat-card__icon stat-card__icon--violet">
+                <app-icon name="calendar" :size="20"></app-icon>
+              </span>
+              <strong>{{ activeDays }}</strong>
+              <span class="stat-card__label">dias ativos</span>
+              <small>{{ activeDays === 1 ? 'Um dia de cada vez' : 'Sua jornada cresce' }}</small>
+            </article>
+          </div>
+
+          <section class="panel week-panel">
+            <div class="panel__head">
+              <div>
+                <p class="eyebrow">Últimos 7 dias</p>
+                <h2>Seu ritmo</h2>
+              </div>
+              <span class="goal-pill">Meta {{ dailyGoal }} min</span>
+            </div>
+            <div class="week-chart">
+              <div v-for="day in weekData" :key="day.key" class="week-day">
+                <div class="week-bar">
+                  <span
+                    :class="{ 'week-bar__fill--complete': day.minutes >= dailyGoal }"
+                    :style="{ height: day.height + '%' }"
+                  ></span>
+                </div>
+                <span class="week-day__value">{{ day.minutes }}</span>
+                <span class="week-day__label" :class="{ 'week-day__label--today': day.today }">{{ day.label }}</span>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="panel__head">
+              <div>
+                <p class="eyebrow">Conquistas</p>
+                <h2>Marcos da jornada</h2>
+              </div>
+              <span class="goal-pill">{{ unlockedAchievements }}/{{ achievements.length }}</span>
+            </div>
+            <div class="achievement-grid">
+              <article
+                v-for="achievement in achievements"
+                :key="achievement.id"
+                class="achievement"
+                :class="{ 'achievement--locked': !achievement.unlocked }"
+              >
+                <span class="achievement__icon">
+                  <app-icon :name="achievement.unlocked ? achievement.icon : 'lock'" :size="20"></app-icon>
+                </span>
+                <strong>{{ achievement.name }}</strong>
+                <span>{{ achievement.description }}</span>
+              </article>
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="panel__head">
+              <div>
+                <p class="eyebrow">Histórico</p>
+                <h2>Últimos treinos</h2>
+              </div>
+            </div>
+            <ul v-if="recentSessions.length" class="history-list">
+              <li v-for="session in recentSessions" :key="session.id">
+                <span class="history-icon"><app-icon name="check" :size="17"></app-icon></span>
+                <span class="history-info">
+                  <strong>{{ session.routineTitle }}</strong>
+                  <small>{{ formatSessionDate(session.timestamp) }}</small>
+                </span>
+                <span class="history-minutes">{{ minutesFromSeconds(session.seconds) }} min</span>
+              </li>
+            </ul>
+            <div v-else class="empty-state empty-state--compact">
+              <app-icon name="calendar" :size="26"></app-icon>
+              <p>Seu histórico aparece aqui depois do primeiro treino.</p>
+            </div>
+          </section>
+
+          <section class="settings-panel">
+            <button class="setting-row" type="button" @click="toggleSound">
+              <span class="setting-row__icon">
+                <app-icon :name="soundOn ? 'volume' : 'volume-off'" :size="20"></app-icon>
+              </span>
+              <span class="setting-row__text">
+                <strong>Som dos exercícios</strong>
+                <small>Avisos no fim de cada pose</small>
+              </span>
+              <span class="switch" :class="{ 'switch--on': soundOn }" aria-hidden="true"></span>
+            </button>
+            <button v-if="canInstall" class="setting-row" type="button" @click="installApp">
+              <span class="setting-row__icon">
+                <app-icon name="download" :size="20"></app-icon>
+              </span>
+              <span class="setting-row__text">
+                <strong>Instalar aplicativo</strong>
+                <small>Adicione o Bend à tela inicial</small>
+              </span>
+              <app-icon name="chevron-right" :size="17"></app-icon>
+            </button>
+            <button v-else-if="isIOS && !isStandalone" class="setting-row" type="button" @click="showInstallHelp = true">
+              <span class="setting-row__icon">
+                <app-icon name="smartphone" :size="20"></app-icon>
+              </span>
+              <span class="setting-row__text">
+                <strong>Instalar no iPhone</strong>
+                <small>Veja como adicionar à tela inicial</small>
+              </span>
+              <app-icon name="chevron-right" :size="17"></app-icon>
+            </button>
+            <button class="setting-row setting-row--danger" type="button" @click="showResetConfirm = true">
+              <span class="setting-row__icon">
+                <app-icon name="trash" :size="20"></app-icon>
+              </span>
+              <span class="setting-row__text">
+                <strong>Apagar progresso</strong>
+                <small>Remove histórico, metas e conquistas</small>
+              </span>
+            </button>
+          </section>
+
+          <p class="offline-note">
+            <app-icon name="wifi-off" :size="16"></app-icon>
+            <span>Seus dados ficam salvos neste dispositivo. O Bend funciona offline.</span>
+          </p>
+          <p class="app-version">Bend PWA · versão 1.0</p>
+        </main>
+      </section>
+
+      <section v-else-if="view === 'detail' && activeRoutine" key="detail" class="screen detail-screen">
+        <header class="detail-top">
+          <button class="icon-button icon-button--soft" type="button" aria-label="Voltar" @click="closeDetail">
+            <app-icon name="arrow-left" :size="20"></app-icon>
+          </button>
+          <span>Visão geral</span>
+          <button class="icon-button icon-button--soft" type="button" aria-label="Fechar" @click="go('home')">
+            <app-icon name="x" :size="20"></app-icon>
+          </button>
+        </header>
+
+        <div class="detail-hero" :style="{ background: 'linear-gradient(140deg, ' + activeRoutine.accent + ' 0%, #1d4ed8 100%)' }">
+          <span class="detail-hero__orb"></span>
+          <span class="detail-hero__icon">
+            <app-icon :name="activeRoutine.icon" :size="30"></app-icon>
+          </span>
+          <span class="chip chip--glass">{{ activeRoutine.category }}</span>
+          <h1>{{ activeRoutine.title }}</h1>
+          <p>{{ activeRoutine.description }}</p>
+          <div class="detail-hero__stats">
+            <div>
+              <app-icon name="clock" :size="18"></app-icon>
+              <strong>{{ routineMinutes(activeRoutine) }}</strong>
+              <span>minutos</span>
+            </div>
+            <div>
+              <app-icon name="layers" :size="18"></app-icon>
+              <strong>{{ activeRoutine.exerciseIds.length }}</strong>
+              <span>poses</span>
+            </div>
+            <div>
+              <app-icon name="chart" :size="18"></app-icon>
+              <strong>{{ activeRoutine.level }}</strong>
+              <span>intensidade</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="detail-content">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Passo a passo</p>
+              <h2>{{ activeRoutine.exerciseIds.length }} alongamentos</h2>
+            </div>
+            <span class="section-note">{{ routineMinutes(activeRoutine) }} min no total</span>
+          </div>
+
+          <ol class="exercise-list">
+            <li v-for="(exercise, index) in activeRoutineExercises" :key="exercise.id">
+              <span class="exercise-number">{{ pad2(index + 1) }}</span>
+              <img :src="exercise.image" :alt="exercise.name" loading="lazy">
+              <span class="exercise-info">
+                <strong>{{ exercise.name }}</strong>
+                <span>{{ exercise.focus }} · {{ formatDuration(exercise.duration) }}</span>
+              </span>
+            </li>
+          </ol>
+
+          <div class="detail-tip">
+            <span class="detail-tip__icon"><app-icon name="sparkles" :size="19"></app-icon></span>
+            <p>{{ activeRoutine.tip }}</p>
+          </div>
+        </div>
+
+        <div class="detail-cta">
+          <button class="btn btn-primary btn-block" type="button" @click="startRoutine(activeRoutine)">
+            <app-icon name="play" :size="18"></app-icon>
+            Começar rotina
+          </button>
+        </div>
+      </section>
+
+      <section v-else-if="view === 'player' && currentExercise" key="player" class="screen player-screen">
+        <header class="player-header">
+          <button class="player-icon-button" type="button" aria-label="Encerrar treino" @click="requestClosePlayer">
+            <app-icon name="x" :size="21"></app-icon>
+          </button>
+          <div class="player-progress">
+            <div class="player-progress__track">
+              <span :style="{ width: playerProgress + '%' }"></span>
+            </div>
+            <div class="player-progress__label">
+              {{ player.index + 1 }} de {{ playerExercises.length }} · {{ player.routine.title }}
+            </div>
+          </div>
+          <button class="player-icon-button" type="button" :aria-label="soundOn ? 'Desativar som' : 'Ativar som'" @click="toggleSound">
+            <app-icon :name="soundOn ? 'volume' : 'volume-off'" :size="20"></app-icon>
+          </button>
+        </header>
+
+        <main class="player-body">
+          <div class="pose-card">
+            <img :src="currentExercise.image" :alt="currentExercise.name">
+            <span class="pose-focus">
+              <app-icon name="target" :size="14"></app-icon>
+              {{ currentExercise.focus }}
+            </span>
+          </div>
+
+          <div class="player-copy">
+            <p class="player-eyebrow">Alongamento {{ player.index + 1 }}</p>
+            <h1 aria-live="polite">{{ currentExercise.name }}</h1>
+            <p class="player-description">{{ currentExercise.description }}</p>
+          </div>
+
+          <div class="timer" :class="{ 'timer--paused': !player.running }">
+            <svg viewBox="0 0 140 140" class="timer__svg" aria-hidden="true">
+              <circle class="timer__track" cx="70" cy="70" r="62"></circle>
+              <circle
+                class="timer__progress"
+                cx="70"
+                cy="70"
+                r="62"
+                :stroke-dasharray="timerCircumference"
+                :stroke-dashoffset="timerOffset"
+              ></circle>
+            </svg>
+            <div class="timer__center">
+              <span class="timer__time" role="timer">{{ timerText }}</span>
+              <span class="timer__state">{{ player.running ? 'Alongue e respire' : 'Pausado' }}</span>
+            </div>
+          </div>
+
+          <div class="player-tip">
+            <app-icon name="info" :size="16"></app-icon>
+            <span>{{ currentExercise.tip }}</span>
+          </div>
+
+          <div class="player-controls">
+            <button class="control" type="button" @click="previousExercise">
+              <span class="control__circle"><app-icon name="back" :size="23"></app-icon></span>
+              <span>Voltar</span>
+            </button>
+            <button class="control control--main" type="button" @click="togglePlay">
+              <span class="control__circle">
+                <app-icon :name="player.running ? 'pause' : 'play'" :size="29"></app-icon>
+              </span>
+              <span>{{ player.running ? 'Pausar' : 'Continuar' }}</span>
+            </button>
+            <button class="control" type="button" @click="skipExercise">
+              <span class="control__circle"><app-icon name="forward" :size="23"></app-icon></span>
+              <span>Pular</span>
+            </button>
+          </div>
+
+          <div v-if="nextExercise" class="up-next">
+            <span class="up-next__label">A seguir</span>
+            <span class="up-next__name">{{ nextExercise.name }}</span>
+            <span class="up-next__time">{{ formatDuration(nextExercise.duration) }}</span>
+            <app-icon name="chevron-right" :size="17"></app-icon>
+          </div>
+          <div v-else class="up-next up-next--last">
+            <span class="up-next__label">Último alongamento</span>
+            <span class="up-next__name">Finalize e respire</span>
+            <app-icon name="check" :size="17"></app-icon>
+          </div>
+        </main>
+      </section>
+
+      <section v-else-if="view === 'complete'" key="complete" class="screen complete-screen">
+        <div class="confetti" aria-hidden="true">
+          <span v-for="piece in 22" :key="piece" :style="confettiStyle(piece)"></span>
+        </div>
+        <div class="complete-card">
+          <span class="complete-badge">
+            <app-icon name="trophy" :size="38"></app-icon>
+          </span>
+          <p class="eyebrow">Rotina concluída</p>
+          <h1>Seu corpo agradece.</h1>
+          <p class="complete-sub">{{ summary.routineTitle }}</p>
+
+          <div class="complete-stats">
+            <div>
+              <strong>{{ summary.minutes }}</strong>
+              <span>minutos</span>
+            </div>
+            <div>
+              <strong>{{ summary.exercises }}</strong>
+              <span>poses</span>
+            </div>
+            <div>
+              <strong>{{ summary.streak }}</strong>
+              <span>dias seguidos</span>
+            </div>
+          </div>
+
+          <div v-if="summary.levelUp" class="level-up">
+            <app-icon :name="level.icon" :size="20"></app-icon>
+            <span>Novo nível: <strong>{{ level.name }}</strong></span>
+          </div>
+
+          <div class="xp-pill">+{{ summary.xp }} XP · {{ totalMinutes }} min no total</div>
+
+          <button class="btn btn-primary btn-block" type="button" @click="finishToHome">Voltar ao início</button>
+          <button class="btn btn-ghost btn-block" type="button" @click="repeatRoutine">
+            <app-icon name="refresh" :size="17"></app-icon>
+            Repetir rotina
+          </button>
+        </div>
+      </section>
+    </transition>
+
+    <nav v-if="showTabbar" class="tabbar" aria-label="Navegação principal">
+      <button class="tab" :class="{ 'tab--active': currentTab === 'home' }" type="button" @click="go('home')">
+        <app-icon name="home" :size="22"></app-icon>
+        <span>Home</span>
+      </button>
+      <button class="tab" :class="{ 'tab--active': currentTab === 'routines' }" type="button" @click="go('routines')">
+        <app-icon name="layers" :size="22"></app-icon>
+        <span>Rotinas</span>
+      </button>
+      <button class="tab" :class="{ 'tab--active': currentTab === 'profile' }" type="button" @click="go('profile')">
+        <app-icon name="chart" :size="22"></app-icon>
+        <span>Progresso</span>
+      </button>
+    </nav>
+
+    <transition name="fade">
+      <div v-if="showExitConfirm" class="modal-backdrop" @click.self="cancelExitConfirmation">
+        <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="exit-title">
+          <span class="modal-icon"><app-icon name="pause" :size="24"></app-icon></span>
+          <h2 id="exit-title">Encerrar treino?</h2>
+          <p>Você já alongou {{ sessionMinutes }} min. Se sair agora, esse tempo será salvo no seu progresso.</p>
+          <div class="modal-actions">
+            <button class="btn btn-ghost" type="button" @click="cancelExitConfirmation">Continuar</button>
+            <button class="btn btn-primary" type="button" @click="confirmExitPlayer">Salvar e sair</button>
+          </div>
+        </div>
+      </div>
+    </transition>
+
+    <transition name="fade">
+      <div v-if="showResetConfirm" class="modal-backdrop" @click.self="showResetConfirm = false">
+        <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="reset-title">
+          <span class="modal-icon modal-icon--danger"><app-icon name="trash" :size="24"></app-icon></span>
+          <h2 id="reset-title">Apagar progresso?</h2>
+          <p>Todos os minutos, ofensivas e conquistas serão removidos deste dispositivo. Esta ação não pode ser desfeita.</p>
+          <div class="modal-actions">
+            <button class="btn btn-ghost" type="button" @click="showResetConfirm = false">Cancelar</button>
+            <button class="btn btn-danger" type="button" @click="confirmReset">Apagar</button>
+          </div>
+        </div>
+      </div>
+    </transition>
+
+    <transition name="fade">
+      <div v-if="showInstallHelp" class="modal-backdrop" @click.self="showInstallHelp = false">
+        <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="install-title">
+          <span class="modal-icon"><app-icon name="smartphone" :size="24"></app-icon></span>
+          <h2 id="install-title">Instalar no iPhone</h2>
+          <ol class="install-steps">
+            <li>Abra o Bend no Safari.</li>
+            <li>Toque no botão Compartilhar.</li>
+            <li>Escolha “Adicionar à Tela de Início”.</li>
+            <li>Confirme em “Adicionar”.</li>
+          </ol>
+          <button class="btn btn-primary btn-block" type="button" @click="showInstallHelp = false">Entendi</button>
+        </div>
+      </div>
+    </transition>
+
+    <transition name="toast">
+      <div v-if="toast" class="toast" role="status">
+        <app-icon name="check" :size="17"></app-icon>
+        <span>{{ toast }}</span>
+      </div>
+    </transition>
+  </div>
+
+  <noscript>
+    <div class="noscript-message">Ative o JavaScript no seu navegador para usar o Bend.</div>
+  </noscript>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@3.5.13/dist/vue.global.prod.js"></script>
+  <script src="./data.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
